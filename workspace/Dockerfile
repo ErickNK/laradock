@@ -805,6 +805,26 @@ RUN if [ ${INSTALL_DUSK_DEPS} = true ]; then \
 ;fi
 
 ###########################################################################
+# Supervisor:
+###########################################################################
+
+USER root
+
+#TODO: figure out how to get environment variable
+ARG INSTALL_SUPERVISOR=true
+
+RUN if [ ${INSTALL_SUPERVISOR} = true ]; then \
+  apt-get -y install supervisor && \
+  mkdir -p /var/log/supervisor && \
+  mkdir -p /etc/supervisor/conf.d \
+
+#TODO: add supervisor monitor
+#  git clone https://github.com/mlazarov/supervisord-monitor.git && \
+#  cp supervisord-monitor/application/config/supervisor.php.example supervisord-monitor/application/config/supervisor.php
+
+;fi
+
+###########################################################################
 # Check PHP version:
 ###########################################################################
 
